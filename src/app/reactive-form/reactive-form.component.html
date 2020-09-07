@@ -1,0 +1,45 @@
+<div class="reactive form">
+    <h2>Reactive form</h2>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form-control">
+            <label>Login</label>
+            <input type="text" formControlName="login">
+            <div class="warnings" *ngIf="form.get('login').invalid && form.get('login').touched">
+                <span *ngIf="form.get('login').errors.minlength">
+                Minimum allowed Login length is 8.
+                </span>
+                <span *ngIf="form.get('login').errors.maxlength">
+                Maximum allowed Login length is 16.
+                </span>
+                <span *ngIf="form.get('login').errors.checkSpacing">
+                Your password must be without any space.
+                </span>
+            </div>
+        </div>
+
+        <div class="form-control">
+            <label>Password</label>
+            <input type="password" formControlName="password">
+            <div class="warnings" *ngIf="form.get('password').invalid && form.get('password').touched">
+                <span *ngIf="form.get('password').errors.checkSpacing">
+                Your password must be without any space.
+                </span>
+                <span *ngIf="form.get('password').errors.isDigitLetter">
+                Your password must contain at least 1 digit and 1 letter.
+                </span>
+            </div>
+        </div>
+
+        <div class="form-control" formArrayName="emails">
+            <h2>Add your e-mail(s)</h2>
+            <button class="addemail" type="button" (click)="addEmail()">Add</button>
+            <div class="email-list"  *ngFor="let control of this.form.get('emails')['controls']; let i = index">
+                <label>{{i + 1}}.</label>
+                <input type="text" [formControlName]="i">
+                <button class="removeemail" (click)="removeEmail(i)">Remove</button>
+            </div>
+        </div>
+
+      <button type="submit" [disabled]="!form.valid">Sign up</button>
+    </form>
+</div>

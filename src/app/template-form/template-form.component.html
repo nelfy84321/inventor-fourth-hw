@@ -1,0 +1,22 @@
+<div class="template-driven form">
+    <h2>Template-driven form</h2>
+    <form #TemplForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-control">
+        <label>Email</label>
+        <input type="email" name="email" ngModel #emailControl="ngModel" required email>
+        <div class="warnings" *ngIf="emailControl.invalid && emailControl.touched">
+          <span *ngIf="emailControl.errors.required">Field "Email" cannot be empty</span>
+          <span *ngIf="emailControl.errors.email">Please enter valid email</span>
+        </div>
+      </div>
+      <div class="form-control">
+        <label>Password</label>
+        <input type="password" name="password" ngModel
+        #passwordControl="ngModel" minlength="8" maxlength="20" required>
+        <div class="warnings" *ngIf="passwordControl.invalid && passwordControl.touched">
+          <span>Please enter valid password.</span>
+        </div>
+      </div>
+      <button type="submit" [disabled]="!TemplForm.valid">Sign up</button>
+    </form>
+</div>

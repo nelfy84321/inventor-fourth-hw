@@ -1,0 +1,68 @@
+.form {
+    display: flex;
+    flex-flow: column;
+    width: 340px;
+    min-height: 400px;
+    padding: 1rem .5rem;
+    margin: .75rem 0;
+    border: 2px solid rgb(216, 215, 215);
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+
+    .form-control {
+        margin: .75rem 0;
+
+        label {
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+    
+        input {
+            display: block;
+            border: 1px solid rgb(216, 215, 215);
+            border-radius: 4px;
+            padding: .5rem;
+            margin: .5rem 0;
+
+            &.ng-invalid.ng-touched {
+                border: 2px solid red;
+            }
+
+            &.ng-valid.ng-touched {
+                border: 2px solid green;
+            }
+
+
+            &:focus {
+                outline: none;
+            }
+        }
+        .warnings {
+            font-size: 0.75rem;
+        }
+
+        .email-list {
+            display: flex;
+            align-items: center;
+            margin: .5rem 0;
+
+            input {
+                margin: 0 0.7rem;
+            }
+        }
+    }
+
+    
+
+    button {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .form {
+    width: 90%;
+    min-height: auto;
+    }
+}
